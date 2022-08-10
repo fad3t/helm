@@ -21,11 +21,25 @@ prismCentralInsecure: false
 createSecret: true
 secretName: nutanix-creds
 
-username: ccm
+username: cpi
 password: nutanix/4u
 
 # Nutanix Cloud Provider Config
 #
+
+# If set to true add some additional custom Nutanix labels to nodes
+#   (prism-element-name, prism-element-uuid, prism-host-name, prism-host-uuid)
+enableCustomLabeling: false
+
+topologyDiscovery:
+  # Define how Topology will be discovered
+  # type can be Prism or Categories
+  #  Prism: use PC as Region and PE as Zone (default settings)
+  #  Categories: read categories to set Region and Zone
+  type: Prism
+
+# If topologyDiscovery.type set to Categories define the name of categories to read for each toplogy
+# ( precedence order is VM -> PE -> PC )
 
 topologyCategories:
   region: region

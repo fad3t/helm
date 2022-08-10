@@ -13,12 +13,23 @@ data:
         "insecure": {{ .Values.prismCentralInsecure }},
         "credentialRef": {
           "kind": "secret",
-          "name": "{{ .Values.secretName }}"
+          "name": "{{ .Values.secretName }}",
+          "namespace": "{{ .Release.Namespace }}"
         }
       },
-      "topologyCategories": {
-        "region": "{{ .Values.topologyCategories.region }}",
-        "zone": "{{ .Values.topologyCategories.zone }}"
+      "enableCustomLabeling": {{ .Values.enableCustomLabeling }},
+
+{{- if eq .Values.topologyDiscovery.type "Categories" }}
+      "topologyDiscovery": {
+        "type": "Categories",
+        "topologyCategories": {
+          "regionCategory": "{{ .Values.topologyCategories.region }}",
+          "zoneCategory": "{{ .Values.topologyCategories.zone }}"
+        }
+{{- else }}
+      "topologyDiscovery": {
+        "type": "Prism"
+{{- end }}
       }
     }
 {{- end }}
