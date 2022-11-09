@@ -35,6 +35,12 @@ volumeClassName: "nutanix-volume"
 volumeClassRetention: "Delete"
 # volumeClassDescription: ""
 
+## Allow to add annotations and labels to the volumeSnapshotClass
+volumeSnapshotClass:
+  name: "nutanix-snapshot-class"
+  annotations: {}
+  labels: {}
+
 fileClass: false
 fileClassName: "nutanix-file"
 fileClassRetention: "Delete"
